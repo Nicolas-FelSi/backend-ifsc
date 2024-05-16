@@ -5,7 +5,7 @@ document.getElementById("resp").classList.remove("alert-success")
 form.addEventListener("submit", (e) => {
    e.preventDefault()
 
-   let data = {
+   let cliente = {
       codigo: form.inCodigo.value,
       nome: form.inNome.value,
       email: form.inEmail.value
@@ -25,7 +25,7 @@ form.addEventListener("submit", (e) => {
          alert(`Erro: ${req.status} ${req.statusText}`);
       }
    }
-   req.open("POST", "clients-insert.php");
+   req.open("POST", "cliente-insert-json.js");
    req.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-   req.send(JSON.stringify(data));
+   req.send(JSON.stringify(cliente));
 })
