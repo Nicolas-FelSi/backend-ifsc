@@ -1,7 +1,10 @@
 const btn = document.getElementById("btn");
 const content = document.getElementById("content");
 
-btn.addEventListener("click", (e) => {
+btn.addEventListener("click", buscaClientes());
+document.addEventListener("load", buscaClientes());
+
+function buscaClientes() {
    const req = new XMLHttpRequest();
    req.onload = function () {
       if (req.status == 200) {
@@ -14,7 +17,7 @@ btn.addEventListener("click", (e) => {
             html += "<tr>";
             html += `<td>${cliente.codigo}</td>`;
             html += `<td>${cliente.nome}</td>`;
-            html += `<td>${cliente.email}</td>`;            
+            html += `<td>${cliente.email}</td>`;
             html += "</tr>";
          }
          html += "</table>";
@@ -26,4 +29,4 @@ btn.addEventListener("click", (e) => {
    }
    req.open("GET", "busca-clientes.php");
    req.send();
-})
+}
