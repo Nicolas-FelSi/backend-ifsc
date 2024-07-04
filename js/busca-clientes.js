@@ -11,18 +11,22 @@ btnIncluirCliente.addEventListener("click", (e) => {
 btnIncluir.addEventListener("click", (e) => {
    e.preventDefault();
    const xhr = new XMLHttpRequest();
-   let cliente = new FormData(document.getElementById("frmIncluirCliente"));
+   const frmIncluirCliente = document.getElementById("frmIncluirCliente");
+   let cliente = new FormData(frmIncluirCliente);
    xhr.onload = () => {
       if (xhr.status == 200) {
          alert(xhr.responseText);
          alert("Inclusão OK");
+         frmIncluirCliente.inNome.value = "";
+         frmIncluirCliente.inEmail.value = "";
+         frmIncluirCliente.style.display = "none";
+         buscaClientes();
       } else {
          alert("Erro inclusão");
       }
    }
    xhr.open("POST", "insert-cliente.php");
    xhr.send(cliente);
-   buscaClientes();
 })
 
 btnBusca.addEventListener("click", buscaClientes);
