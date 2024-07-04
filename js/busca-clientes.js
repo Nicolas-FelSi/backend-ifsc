@@ -22,9 +22,10 @@ btnIncluir.addEventListener("click", (e) => {
    }
    xhr.open("POST", "insert-cliente.php");
    xhr.send(cliente);
+   buscaClientes();
 })
 
-btn.addEventListener("click", buscaClientes());
+btnBusca.addEventListener("click", buscaClientes);
 document.addEventListener("DOMContentLoaded", buscaClientes());
 
 function buscaClientes() {
