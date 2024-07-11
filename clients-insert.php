@@ -5,7 +5,7 @@ $filename = "txt/clientes2.csv";
 $file = fopen($filename, "a");
 
 if($file) {
-   $linha = "$cliente->cod; $cliente->nome; $cliente->email\n";
+   $linha = "$cliente->codigo; $cliente->nome; $cliente->email\n";
    fwrite($file, $linha);
    fclose($file);
 }
