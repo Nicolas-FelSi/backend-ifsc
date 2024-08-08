@@ -21,14 +21,21 @@
 
 <body>
   <main class=" container">
-
-    <div class="d-flex mb-3 mt-2 gap-1">
-      <button class="btn btn-primary" id="btnBusca">Buscar</button>
-      <button id="btnIncluirCliente" class="btn btn-secondary">Novo Cliente</button>
-    </div>
+    <h1>Cadastro Pessoas</h1>
+    <form id="frmBuscarCliente">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="expressaoBusca" placeholder="Buscar cliente">
+        <button class="btn btn-primary" id="btnBusca">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Buscar
+        </button>
+      </div>
+    </form>
     <div id="content"></div>
-    <form id="frmIncluirCliente" method="post" style="display: none;" class=" container">
-      
+    <div class="text-center">
+      <button id="btnIncluirCliente" class="btn btn-primary">Novo Cliente</button>
+    </div>
+    <form id="frmIncluirCliente" method="post" style="display: none;" class=" container">     
       <div class="form-floating mb-3">
         <input type="text" class="form-control" name="nome" id="inNome" required>
         <label for="inNome">Nome</label>

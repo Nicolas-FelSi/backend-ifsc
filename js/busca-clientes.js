@@ -4,6 +4,7 @@ const btnIncluir = document.getElementById("btnIncluir");
 const btnAtualizar = document.getElementById("btnAtualizar");
 const content = document.getElementById("content");
 const frmIncluirCliente = document.getElementById("frmIncluirCliente");
+const frmBuscarCliente = document.getElementById("frmBuscarCliente");
 
 btnIncluirCliente.addEventListener("click", (e) => {
    frmIncluirCliente.style.display = "block";
@@ -21,7 +22,7 @@ btnIncluir.addEventListener("click", (e) => {
          frmIncluirCliente.inNome.value = "";
          frmIncluirCliente.inEmail.value = "";
          frmIncluirCliente.style.display = "none";
-         buscaClientes();
+         buscaClientes(e);
       } else {
          alert("Erro inclusão");
       }
@@ -31,9 +32,13 @@ btnIncluir.addEventListener("click", (e) => {
 })
 
 btnBusca.addEventListener("click", buscaClientes);
-document.addEventListener("DOMContentLoaded", buscaClientes());
+document.addEventListener("DOMContentLoaded", buscaClientes);
+frmBuscarCliente.addEventListener("submit", (e) => buscaClientes(e));
 
-function buscaClientes() {
+function buscaClientes(e) {
+   e.preventDefault();
+   const expressaoBusca = frmBuscarCliente.expressaoBusca.value;
+
    const req = new XMLHttpRequest();
    req.onload = function () {
       if (req.status == 200) {
@@ -59,7 +64,7 @@ function buscaClientes() {
          alert(`Erro: ${req.status} ${req.statusText}`);
       }
    }
-   req.open("GET", "busca-clientes.php");
+   req.open("GET", `busca-clientes.php?expressaoBusca=${expressaoBusca}`);
    req.send();
 }
 
@@ -89,11 +94,12 @@ btnAtualizar.addEventListener("click", () => {
    xhr.onload = function() {
       if (xhr.status === 200) {
          buscaClientes();
+         bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
       }
    }
 
    xhr.open("POST", "cliente-update.php");
-   xhr.send();
+   xhr.send(cliente);
 })
 
 function delCliente(id) {
